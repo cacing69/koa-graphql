@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon",
-    "codegen": "graphql-codegen"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
