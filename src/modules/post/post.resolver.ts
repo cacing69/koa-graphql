@@ -1,5 +1,7 @@
+import { container } from 'tsyringe';
 import { GraphQLContext } from '../../types/context';
 import { PostService } from './post.service';
+import { CreatePostUseCase } from './usecases/create-post.usecase';
 
 const postService = new PostService();
 
@@ -8,15 +10,16 @@ export const postResolvers = {
         return postService.findById(id);
     },
     createPost: (
-        { title, content }: { title: string; content: string },
-        context: GraphQLContext
+        args: { title: string; content: string }, context: GraphQLContext
     ) => {
-        console.log(context.user);
+        // console.log(context.user);
 
-        if (!context.user) {
-            throw new Error('Unauthorized');
-        }
+        // if (!context.user) {
+        //     throw new Error('Unauthorized');
+        // }
 
-        return postService.create(title, content);
+        // return postService.create(title, content);
+        const useCase = container.resolve(CreatePostUseCase);
+        return useCase.execute(args, context);
     }
 };

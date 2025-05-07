@@ -10,7 +10,7 @@ export async function authMiddleware(ctx: Context, next: Next) {
         const token = authHeader.slice(7);
         try {
             const decoded = jwt.verify(token, JWT_SECRET);
-            // console.log(decoded)
+
             ctx.state.user = decoded;
         } catch (err: any) {
             console.warn('Invalid token:', err.message);

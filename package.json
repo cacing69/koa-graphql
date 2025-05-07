@@ -17,13 +17,18 @@
     "jsonwebtoken": "^9.0.2",
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
+    "koa-helmet": "^8.0.1",
     "koa-router": "^13.0.1",
+    "koa2-cors": "^2.0.6",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.10.0",
     "zod": "^3.24.4"
   },
   "devDependencies": {
     "@types/koa": "^2.15.0",
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-router": "^7.4.8",
+    "@types/koa2-cors": "^2.0.5",
     "@types/node": "^22.15.14",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
