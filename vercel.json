@@ -22,5 +22,16 @@
                 "DELETE"
             ]
         }
+    ],
+    "headers": [
+        {
+            "source": "/graphiql",
+            "headers": [
+                {
+                    "key": "Content-Security-Policy",
+                    "value": "script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline'; object-src 'none'"
+                }
+            ]
+        }
     ]
 }

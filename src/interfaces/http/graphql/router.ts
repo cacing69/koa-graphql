@@ -67,7 +67,7 @@ router.get('/graphiql', async (ctx: Context) => {
   `;
 });
 
-router.post('/login', async (ctx) => {
+router.post('/login', async (ctx: Context) => {
     const { name } = ctx.request.body as { name: string };
     const token = jwt.sign({ id: '123', name }, 'your_jwt_secret', { expiresIn: '1h' });
     ctx.body = { token };
