@@ -5,6 +5,8 @@ import koaHelmet from 'koa-helmet';
 import bodyParser from 'koa-bodyparser';
 import graphqlRouter from './interfaces/http/graphql/router';
 import { authMiddleware } from './middleware/auth';
+import serve from 'koa-static';
+import path from 'path';
 
 import './container';
 
@@ -18,11 +20,15 @@ app.use(koaCors({
     allowHeaders: ['Content-Type', 'Authorization'],
 }));
 
-app.use(koaHelmet());
+// app.use(koaHelmet());
 
 app.use(authMiddleware);
 
 app.use(graphqlRouter.routes()).use(graphqlRouter.allowedMethods());
+
+
+
+app.use(serve(path.join(__dirname, '../public'))); // Sesuaikan dengan lokasi `graphiql.html`
 
 const PORT = 4000;
 
