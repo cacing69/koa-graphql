@@ -77,6 +77,15 @@ CREATE TABLE "UserPermission" (
     CONSTRAINT "UserPermission_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Post" (
+    "id" VARCHAR(26) NOT NULL,
+    "title" VARCHAR(255) NOT NULL,
+    "content" TEXT,
+
+    CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 

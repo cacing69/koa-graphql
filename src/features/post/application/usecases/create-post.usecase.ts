@@ -9,13 +9,14 @@ export class CreatePostUseCase {
         @inject("PostRepository") private postRepo: IPostRepository
     ) { }
 
-    execute(args: { title: string; content: string }, ctx?: GraphQLContext): Post {
+    async execute(args: { title: string; content: string }, ctx?: GraphQLContext): Promise<Post> {
 
         // if (!ctx.user) {
         //     throw new Error('Forbidden');
         // }
 
         const post = new Post(Date.now().toString(), args.title, args.content);
-        return this.postRepo.insert(post);
+
+        return this.postRepo.create(post);
     }
 }

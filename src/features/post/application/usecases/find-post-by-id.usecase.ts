@@ -10,10 +10,10 @@ export class FindPostByIdUseCase {
         @inject("PostRepository") private postRepo: IPostRepository
     ) { }
 
-    execute(args: { id: string; }, ctx?: GraphQLContext): Post {
-        const post = this.postRepo.getById(args.id);
+    async execute(args: { id: string; }, ctx?: GraphQLContext): Promise<Post> {
+        const post = await this.postRepo.getById(args.id);
 
-        if (!post) {
+        if (post === null) {
             throw new NotFound('Post not found');
         }
         return post;

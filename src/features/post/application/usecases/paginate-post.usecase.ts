@@ -10,7 +10,7 @@ export class PaginatePostUseCase {
         @inject("PostRepository") private postRepo: IPostRepository
     ) { }
 
-    execute(args: { cursor: string; limit: number }, ctx?: GraphQLContext): PaginatedResponse<Post> {
+    async execute(args: { cursor: string; limit: number }, ctx?: GraphQLContext): Promise<PaginatedResponse<Post>> {
 
         const cursor = args.cursor;
         const limit = args.limit ?? 10;

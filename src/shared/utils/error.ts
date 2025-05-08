@@ -19,6 +19,17 @@ export class InputError extends GraphQLError {
     }
 }
 
+export class InternalServerError extends GraphQLError {
+    constructor(errors: any, code: string) {
+        super('Internal Server Error', {
+            extensions: {
+                code,
+                validationErrors: errors,
+            },
+        });
+    }
+}
+
 
 export class NotFound extends GraphQLError {
     constructor(message: string) {

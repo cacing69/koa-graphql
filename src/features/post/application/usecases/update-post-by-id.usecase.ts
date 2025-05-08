@@ -10,10 +10,10 @@ export class UpdatePostByIdUseCase {
         @inject("PostRepository") private postRepo: IPostRepository
     ) { }
 
-    execute(args: { id: string; title: string, content: string }, ctx?: GraphQLContext): Post {
-        const post = this.postRepo.updateById(args.id, args);
+    async execute(args: { id: string; title: string, content: string }, ctx?: GraphQLContext): Promise<Post | null> {
+        const post = await this.postRepo.updateById(args.id, args);
 
-        if (!post) {
+        if (post === null) {
             throw new NotFound('Post not found');
         }
 

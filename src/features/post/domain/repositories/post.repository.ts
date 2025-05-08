@@ -3,8 +3,8 @@ import { Post } from '../entities/post.entity';
 
 
 export interface IPostRepository {
-    insert(post: Post): Post;
-    paginate(cursor: string, limit: number): PaginatedResponse<Post>;
-    getById(id: string): Post | null;
-    updateById(id: string, data: Partial<Post>): Post | null;
+    create(post: Post): Promise<Post>;
+    paginate(cursor: string, limit: number): Promise<PaginatedResponse<Post>>;
+    getById(id: string): Promise<Post | null>;
+    updateById(id: string, data: Partial<Post>): Promise<Post | null>;
 }

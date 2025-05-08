@@ -3,13 +3,14 @@ import { IPostRepository } from './domain/repositories/post.repository';
 import { CreatePostUseCase } from './application/usecases/create-post.usecase';
 import { FindPostByIdUseCase } from './application/usecases/find-post-by-id.usecase';
 import { PaginatePostUseCase } from './application/usecases/paginate-post.usecase';
-import { InMemoryPostRepositoryImpl } from './infrastructure/repositories/inmemory.post.repository.impl';
+// import { InMemoryPostRepositoryImpl } from './infrastructure/repositories/inmemory.post.repository.impl';
 import { UpdatePostByIdUseCase } from './application/usecases/update-post-by-id.usecase';
+import { PrismaPostRepositoryImpl } from './infrastructure/repositories/prisma.post.repository.impl';
 
 // Register Dependency
 export const registerPostDependencies = () => {
     container.register<IPostRepository>('PostRepository', {
-        useClass: InMemoryPostRepositoryImpl,
+        useClass: PrismaPostRepositoryImpl,
     });
 
     container.register<CreatePostUseCase>(CreatePostUseCase, {
