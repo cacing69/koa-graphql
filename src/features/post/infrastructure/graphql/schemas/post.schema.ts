@@ -15,7 +15,19 @@ export const postTypeDefs = `
     getPostById(id: ID!): Post
   }
 
+  input CreatePostInput {
+    title: String
+    content: String
+  }
+
+  input UpdatePostInput {
+    id: ID!
+    title: String
+    content: String
+  }
+
   extend type Mutation {
-    createPost(title: String!, content: String!): Post
+    createPost(input: CreatePostInput): Post
+    updatePostById(input: UpdatePostInput): Post
   }
 `;

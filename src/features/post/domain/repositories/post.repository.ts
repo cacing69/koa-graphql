@@ -6,4 +6,5 @@ export interface IPostRepository {
     insert(post: Post): Post;
     paginate(cursor: string, limit: number): PaginatedResponse<Post>;
     getById(id: string): Post | null;
+    updateById(id: string, data: Partial<Post>): Post | null;
 }

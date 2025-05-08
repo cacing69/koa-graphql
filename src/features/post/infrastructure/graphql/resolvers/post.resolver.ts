@@ -5,10 +5,12 @@ import { FindPostByIdUseCase } from '@features/post/application/usecases/find-po
 import { PaginatePostUseCase } from '@features/post/application/usecases/paginate-post.usecase';
 import { createPostPayload } from '@features/post/application/payloads/create-post.payload';
 import { validateInput } from '@shared/utils/validate-input';
+import { updatePostPayload } from '../../../application/payloads/update-post.payload';
+import { UpdatePostByIdUseCase } from '../../../application/usecases/update-post-by-id.usecase';
 
 
 export const postResolvers = {
-    getPaginatePosts: (
+    getPaginatedPosts: (
         args: { cursor: string; limit: number }, context: GraphQLContext
     ) => {
         const useCase = container.resolve(PaginatePostUseCase);
@@ -21,11 +23,20 @@ export const postResolvers = {
         return useCase.execute(args, context);
     },
     createPost: (
-        args: { title: string; content: string }, context: GraphQLContext
+        args: { input: { title: string; content: string } }, context: GraphQLContext
     ) => {
-        validateInput(createPostPayload, args);
+        validateInput(createPostPayload, args?.input);
 
         const useCase = container.resolve(CreatePostUseCase);
-        return useCase.execute(args, context);
+        return useCase.execute(args?.input, context);
+    },
+    updatePostById: (
+        args: { input: { id: string, title: string; content: string } }, context: GraphQLContext
+    ) => {
+        console.log(args);
+        validateInput(updatePostPayload, args?.input);
+
+        const useCase = container.resolve(UpdatePostByIdUseCase);
+        return useCase.execute(args?.input, context);
     }
 };
