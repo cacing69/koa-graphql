@@ -12,18 +12,6 @@ import './shared/container';
 
 const app = new Koa();
 
-app.use(bodyParser());
-
-const allowedOrigins = ["http://localhost:4200"];
-
-app.use(async (ctx, next) => {
-    if (ctx.method === 'OPTIONS') {
-        ctx.status = 204;
-        return;
-    }
-    await next();
-});
-
 app.use(koaCors({
     origin: (ctx : Context) => {
         // const allowedOrigins = ['https://studio.apollographql.com'];
@@ -37,7 +25,17 @@ app.use(koaCors({
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 
+app.use(async (ctx, next) => {
+    if (ctx.method === 'OPTIONS') {
+        ctx.status = 204;
+        return;
+    }
+    await next();
+});
+
 // app.use(koaHelmet());
+
+app.use(bodyParser());
 
 app.use(authMiddleware);
 
