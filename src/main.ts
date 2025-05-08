@@ -16,7 +16,7 @@ app.use(bodyParser());
 
 app.use(koaCors({
     origin: '*',
-    allowMethods: ['HEAD', 'GET', 'PATCH', 'POST', 'PUT', 'DELETE'],
+    allowMethods: ['HEAD', 'GET', 'PATCH', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
 }));
 
