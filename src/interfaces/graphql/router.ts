@@ -32,14 +32,7 @@ router.post('/graphql', async (ctx: Context) => {
     ctx.body = result;
 });
 
-// router.options('/graphql', async (ctx: Context) => {
-//   ctx.status = 204;
-//   return;
-// });
-
 router.get('/graphiql', async (ctx: Context) => {
-  // ctx.set('Content-Security-Policy', "script-src 'self' https://unpkg.com 'nonce-asd'; style-src 'self' https://unpkg.com 'unsafe-inline'; object-src 'none'");
-
     ctx.type = 'text/html';
     ctx.body = `
     <!DOCTYPE html>
