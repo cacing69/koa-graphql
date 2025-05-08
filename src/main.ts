@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import Koa from 'koa';
+import Koa, { Context } from 'koa';
 import koaCors from 'koa2-cors';
 import koaHelmet from 'koa-helmet';
 import bodyParser from 'koa-bodyparser';
@@ -14,8 +14,13 @@ const app = new Koa();
 
 app.use(bodyParser());
 
+const allowedOrigins = ["http://localhost:4200"];
+
 app.use(koaCors({
-    origin: '*',
+    origin: (ctx: Context) => {
+        const requestOrigin = ctx.request.header.origin || '';
+        return allowedOrigins.includes(requestOrigin) ? requestOrigin : false;
+    },
     allowMethods: ['GET', 'PATCH', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
 }));
