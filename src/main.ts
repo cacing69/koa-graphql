@@ -16,9 +16,22 @@ app.use(bodyParser());
 
 const allowedOrigins = ["http://localhost:4200"];
 
+app.use(async (ctx, next) => {
+    if (ctx.method === 'OPTIONS') {
+        ctx.status = 204;
+        return;
+    }
+    await next();
+});
+
 app.use(koaCors({
-    origin: (ctx: Context) => {
-        return "*"
+    origin: (ctx : Context) => {
+        // const allowedOrigins = ['https://studio.apollographql.com'];
+        // const requestOrigin = ctx.request.header.origin || '';
+        // if (allowedOrigins.includes(requestOrigin)) {
+        //     return requestOrigin;
+        // }
+        return '*'; // disallow everything else
     },
     allowMethods: ['GET', 'PATCH', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
