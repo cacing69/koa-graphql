@@ -5,8 +5,13 @@ export const postTypeDefs = `
     content: String!
   }
 
+  type PaginatedPost {
+    data: [Post!]!
+    meta: PaginationMeta!
+  }
+
   extend type Query {
-    getPaginatedPosts(page: Int, limit: Int): [Post!]!
+    getPaginatedPosts(cursor: String, limit: Int): PaginatedPost!
     getPostById(id: ID!): Post
   }
 

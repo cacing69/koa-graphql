@@ -12,6 +12,7 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "./src",
     "paths": {
+      "@/*": ["/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
       "@interfaces/*": ["interfaces/*"]

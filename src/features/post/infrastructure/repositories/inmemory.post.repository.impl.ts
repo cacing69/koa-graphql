@@ -1,6 +1,7 @@
 import { injectable } from 'tsyringe';
 import { Post } from '../../domain/entities/post.entity';
 import { IPostRepository } from '../../domain/repositories/post.repository';
+import { PaginatedResponse } from '../../../../shared/types/paginated.response';
 
 @injectable()
 export class InMemoryPostRepositoryImpl implements IPostRepository {
@@ -17,8 +18,17 @@ export class InMemoryPostRepositoryImpl implements IPostRepository {
         return post;
     }
 
-    paginate(page?: number, limit?: number): Post[] {
-        return this.posts;
+    paginate(cursor: string, limit: number): PaginatedResponse<Post> {
+        // const startIndex = (page - 1) * limit;
+        // const endIndex = startIndex + limit;
+
+        return {
+            data: this.posts,
+            meta: {
+                limit: limit,
+                nextCursor: `1`,
+            }
+        };
     }
 
     getById(id: string): Post | null {

@@ -9,7 +9,7 @@ import { validateInput } from '@shared/utils/validate-input';
 
 export const postResolvers = {
     getPaginatePosts: (
-        args: { page: number; limit: number }, context: GraphQLContext
+        args: { cursor: string; limit: number }, context: GraphQLContext
     ) => {
         const useCase = container.resolve(PaginatePostUseCase);
         return useCase.execute(args, context);

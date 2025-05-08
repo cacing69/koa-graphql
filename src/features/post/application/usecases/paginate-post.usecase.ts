@@ -2,6 +2,7 @@ import { injectable, inject } from 'tsyringe';
 import { IPostRepository } from '../../domain/repositories/post.repository';
 import { Post } from '../../domain/entities/post.entity';
 import { GraphQLContext } from '../../../../shared/types/context';
+import { PaginatedResponse } from '../../../../shared/types/paginated.response';
 
 @injectable()
 export class PaginatePostUseCase {
@@ -9,11 +10,11 @@ export class PaginatePostUseCase {
         @inject("PostRepository") private postRepo: IPostRepository
     ) { }
 
-    execute(args: { page: number; limit: number }, ctx?: GraphQLContext): Post[] {
+    execute(args: { cursor: string; limit: number }, ctx?: GraphQLContext): PaginatedResponse<Post> {
 
-        const page = args.page ?? 1;
+        const cursor = args.cursor;
         const limit = args.limit ?? 10;
 
-        return this.postRepo.paginate(page, limit);
+        return this.postRepo.paginate(cursor, limit);
     }
 }
