@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import Koa, { Context } from 'koa';
-import koaCors from 'koa2-cors';
+// import koaCors from 'koa2-cors';
 import koaHelmet from 'koa-helmet';
 import bodyParser from 'koa-bodyparser';
 import graphqlRouter from './interfaces/graphql/router';
@@ -9,10 +9,11 @@ import serve from 'koa-static';
 import path from 'path';
 
 import './shared/container';
+import cors from '@koa/cors';
 
 const app = new Koa();
 
-app.use(koaCors({
+app.use(cors({
     // origin: (ctx : Context) => {
     //     // const allowedOrigins = ['https://studio.apollographql.com'];
     //     // const requestOrigin = ctx.request.header.origin || '';
