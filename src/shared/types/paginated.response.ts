@@ -1,6 +1,6 @@
 export type PaginatedResponse<T> = {
-    data: T[] | null;
-    meta: {
+    results: T[] | null;
+    pagination: {
         limit: number;
         nextCursor: string | null;
     };

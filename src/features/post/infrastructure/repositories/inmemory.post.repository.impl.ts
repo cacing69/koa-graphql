@@ -22,11 +22,9 @@ export class InMemoryPostRepositoryImpl implements IPostRepository {
         // const startIndex = (page - 1) * limit;
         // const endIndex = startIndex + limit;
 
-        console.log(this.posts)
-
         return {
-            data: this.posts,
-            meta: {
+            results: this.posts,
+            pagination: {
                 limit: limit,
                 nextCursor: `1`,
             }
@@ -47,8 +45,6 @@ export class InMemoryPostRepositoryImpl implements IPostRepository {
         const updatedPost = { ...this.posts[postIndex], ...data };
 
         this.posts[postIndex] = updatedPost;
-
-        console.log(this.posts)
 
         return updatedPost;
     }

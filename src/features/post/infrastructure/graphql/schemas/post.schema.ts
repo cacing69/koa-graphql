@@ -6,8 +6,8 @@ export const postTypeDefs = `
   }
 
   type PaginatedPost {
-    data: [Post!]!
-    meta: PaginationMeta!
+    results: [Post!]!
+    pagination: Pagination!
   }
 
   extend type Query {

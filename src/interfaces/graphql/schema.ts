@@ -3,7 +3,7 @@ import { userTypeDefs } from '../../features/user/user.schema';
 import { postTypeDefs } from '../../features/post/infrastructure/graphql/schemas/post.schema';
 
 export const schema = buildSchema(`
-  type PaginationMeta {
+  type Pagination {
     limit: String!
     nextCursor: String
   }

@@ -33,7 +33,6 @@ export const postResolvers = {
     updatePostById: (
         args: { input: { id: string, title: string; content: string } }, context: GraphQLContext
     ) => {
-        console.log(args);
         validateInput(updatePostPayload, args?.input);
 
         const useCase = container.resolve(UpdatePostByIdUseCase);
