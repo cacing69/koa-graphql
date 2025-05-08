@@ -23,8 +23,7 @@ app.use(cors({
     //     return '*'; // disallow everything else
     // },
     // origin: "*",
-    origin: (ctx) => ctx.get('Origin'),
-    credentials: true,
+    origin: "*",
     allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
@@ -54,8 +53,3 @@ const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server ready at http://localhost:${PORT}/graphql`);
 });
-
-// Export for Vercel
-export default async function handler(req: any, res: any) {
-    await app.callback()(req, res);
-}
