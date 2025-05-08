@@ -18,11 +18,10 @@ const allowedOrigins = ["http://localhost:4200"];
 
 app.use(koaCors({
     origin: (ctx: Context) => {
-        const requestOrigin = ctx.request.header.origin || '';
-        return allowedOrigins.includes(requestOrigin) ? requestOrigin : false;
+        return "*"
     },
     allowMethods: ['GET', 'PATCH', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 
 // app.use(koaHelmet());
