@@ -6,6 +6,6 @@ export const userTypeDefs = `
 
 
   extend type Query {
-    getUser(id: ID!): User
+    getUserById(id: ID!): User
   }
 `;

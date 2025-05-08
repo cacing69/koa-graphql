@@ -4,18 +4,16 @@ import { Post } from '../../domain/entities/post.entity';
 import { GraphQLContext } from '../../../../shared/types/context';
 
 @injectable()
-export class CreatePostUseCase {
+export class PaginatePostUseCase {
     constructor(
         @inject("PostRepository") private postRepo: IPostRepository
     ) { }
 
-    execute(args: { title: string; content: string }, ctx?: GraphQLContext): Post {
+    execute(args: { page: number; limit: number }, ctx?: GraphQLContext): Post[] {
 
-        // if (!ctx.user) {
-        //     throw new Error('Forbidden');
-        // }
+        const page = args.page ?? 1;
+        const limit = args.limit ?? 10;
 
-        const post = new Post(Date.now().toString(), args.title, args.content);
-        return this.postRepo.insert(post);
+        return this.postRepo.paginate(page, limit);
     }
 }

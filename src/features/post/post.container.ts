@@ -1,15 +1,25 @@
 import { container } from 'tsyringe';
 import { IPostRepository } from './domain/repositories/post.repository';
-import { PostService } from './application/services/post.service';
-import { InMemoryPostRepository } from './infrastructure/graphql/persistence/post.repository.inmem';
+import { CreatePostUseCase } from './application/usecases/create-post.usecase';
+import { FindPostByIdUseCase } from './application/usecases/find-post-by-id.usecase';
+import { PaginatePostUseCase } from './application/usecases/paginate-post.usecase';
+import { InMemoryPostRepositoryImpl } from './infrastructure/repositories/inmemory.post.repository.impl';
 
 // Register Dependency
 export const registerPostDependencies = () => {
     container.register<IPostRepository>('PostRepository', {
-        useClass: InMemoryPostRepository,
+        useClass: InMemoryPostRepositoryImpl,
     });
 
-    container.register<PostService>('PostService', {
-        useClass: PostService,
+    container.register<CreatePostUseCase>(CreatePostUseCase, {
+        useClass: CreatePostUseCase,
+    });
+
+    container.register<FindPostByIdUseCase>(FindPostByIdUseCase, {
+        useClass: FindPostByIdUseCase,
+    });
+
+    container.register<PaginatePostUseCase>(PaginatePostUseCase, {
+        useClass: PaginatePostUseCase,
     });
 };

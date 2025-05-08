@@ -1,24 +1,30 @@
 import { container } from 'tsyringe';
-import { PostService } from '../../../application/services/post.service';
-import { GraphQLContext } from '../../../../../types/context';
-import { CreatePostUseCase } from '../../../application/usecases/create-post.usecase';
+import { GraphQLContext } from '@shared/types/context';
+import { CreatePostUseCase } from '@features/post/application/usecases/create-post.usecase';
+import { FindPostByIdUseCase } from '@features/post/application/usecases/find-post-by-id.usecase';
+import { PaginatePostUseCase } from '@features/post/application/usecases/paginate-post.usecase';
+import { createPostPayload } from '@features/post/application/payloads/create-post.payload';
+import { validateInput } from '@shared/utils/validate-input';
 
-const postService = new PostService();
 
 export const postResolvers = {
-    getPost: ({ id }: { id: string }) => {
-        return postService.findById(id);
+    getPaginatePosts: (
+        args: { page: number; limit: number }, context: GraphQLContext
+    ) => {
+        const useCase = container.resolve(PaginatePostUseCase);
+        return useCase.execute(args, context);
+    },
+    getPostById: (
+        args: { id: string }, context: GraphQLContext
+    ) => {
+        const useCase = container.resolve(FindPostByIdUseCase);
+        return useCase.execute(args, context);
     },
     createPost: (
         args: { title: string; content: string }, context: GraphQLContext
     ) => {
-        // console.log(context.user);
+        validateInput(createPostPayload, args);
 
-        // if (!context.user) {
-        //     throw new Error('Unauthorized');
-        // }
-
-        // return postService.create(title, content);
         const useCase = container.resolve(CreatePostUseCase);
         return useCase.execute(args, context);
     }

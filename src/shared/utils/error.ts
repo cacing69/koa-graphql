@@ -1,10 +1,21 @@
 import { GraphQLError } from 'graphql'
 
-export class InputError extends GraphQLError {
-    constructor(message: string) {
+export class Error extends GraphQLError {
+    constructor(message: string, code: string) {
         super(message, {
-            extensions: { code: 'ERROR_INPUT_USER' }
+            extensions: { code }
         })
+    }
+}
+
+export class InputError extends GraphQLError {
+    constructor(errors: any) {
+        super('Validation error', {
+            extensions: {
+                code: 'BAD_USER_INPUT',
+                validationErrors: errors,
+            },
+        });
     }
 }
 

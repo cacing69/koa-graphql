@@ -6,7 +6,8 @@ export const postTypeDefs = `
   }
 
   extend type Query {
-    getPost(id: ID!): Post
+    getPaginatedPosts(page: Int, limit: Int): [Post!]!
+    getPostById(id: ID!): Post
   }
 
   extend type Mutation {
