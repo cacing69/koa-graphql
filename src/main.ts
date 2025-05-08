@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import Koa, { Context } from 'koa';
 // import koaCors from 'koa2-cors';
-import koaHelmet from 'koa-helmet';
+// import koaHelmet from 'koa-helmet';
 import bodyParser from 'koa-bodyparser';
 import graphqlRouter from './interfaces/graphql/router';
 import { authMiddleware } from './interfaces/http/middleware/auth';
@@ -22,7 +22,9 @@ app.use(cors({
     //     // }
     //     return '*'; // disallow everything else
     // },
-    origin: "*",
+    // origin: "*",
+    origin: (ctx) => ctx.get('Origin'),
+    credentials: true,
     allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
@@ -52,3 +54,8 @@ const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server ready at http://localhost:${PORT}/graphql`);
 });
+
+// Export for Vercel
+export default async function handler(req: any, res: any) {
+    await app.callback()(req, res);
+}
