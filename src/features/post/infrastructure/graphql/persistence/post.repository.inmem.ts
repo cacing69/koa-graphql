@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
-import { IPostRepository } from './post.repository';
-import { Post } from './post.entity';
+import { Post } from '../../../domain/entities/post.entity';
+import { IPostRepository } from '../../../domain/repositories/post.repository';
 
 @injectable()
 export class InMemoryPostRepository implements IPostRepository {

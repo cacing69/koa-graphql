@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
-import { GraphQLContext } from '../../types/context';
-import { PostService } from './post.service';
-import { CreatePostUseCase } from './usecases/create-post.usecase';
+import { PostService } from '../../../application/services/post.service';
+import { GraphQLContext } from '../../../../../types/context';
+import { CreatePostUseCase } from '../../../application/usecases/create-post.usecase';
 
 const postService = new PostService();
 

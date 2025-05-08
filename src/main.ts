@@ -3,12 +3,12 @@ import Koa from 'koa';
 import koaCors from 'koa2-cors';
 import koaHelmet from 'koa-helmet';
 import bodyParser from 'koa-bodyparser';
-import graphqlRouter from './interfaces/http/graphql/router';
-import { authMiddleware } from './middleware/auth';
+import graphqlRouter from './interfaces/graphql/router';
+import { authMiddleware } from './interfaces/http/middleware/auth';
 import serve from 'koa-static';
 import path from 'path';
 
-import './container';
+import './shared/container';
 
 const app = new Koa();
 
@@ -16,7 +16,7 @@ app.use(bodyParser());
 
 app.use(koaCors({
     origin: '*',
-    allowMethods: ['HEAD', 'GET', 'PATCH', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowMethods: ['GET', 'PATCH', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
 }));
 

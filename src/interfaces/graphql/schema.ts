@@ -1,6 +1,6 @@
 import { buildSchema } from 'graphql';
-import { userTypeDefs } from '../../../modules/user/user.schema';
-import { postTypeDefs } from '../../../modules/post/post.schema';
+import { userTypeDefs } from '../../features/user/user.schema';
+import { postTypeDefs } from '../../features/post/infrastructure/graphql/schemas/post.schema';
 
 export const schema = buildSchema(`
   type Query {

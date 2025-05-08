@@ -1,4 +1,5 @@
-import { Post } from './post.entity';
+import { Post } from '../entities/post.entity';
+
 
 export interface IPostRepository {
     insert(post: Post): Post;

@@ -1,10 +1,10 @@
 import Router from 'koa-router';
 import { graphql } from 'graphql';
 import { schema } from './schema';
-import { userResolvers } from '../../../modules/user/user.resolver';
+import { userResolvers } from '../../features/user/user.resolver';
 import { Context } from 'koa';
-import { postResolvers } from '../../../modules/post/post.resolver';
 import jwt from 'jsonwebtoken';
+import { postResolvers } from '../../features/post/infrastructure/graphql/resolvers/post.resolver';
 
 const router = new Router();
 
@@ -33,7 +33,7 @@ router.post('/graphql', async (ctx: Context) => {
 });
 
 router.get('/graphiql', async (ctx: Context) => {
-  ctx.set('Content-Security-Policy', "script-src 'self' https://unpkg.com 'nonce-asd'; style-src 'self' https://unpkg.com 'unsafe-inline'; object-src 'none'");
+  // ctx.set('Content-Security-Policy', "script-src 'self' https://unpkg.com 'nonce-asd'; style-src 'self' https://unpkg.com 'unsafe-inline'; object-src 'none'");
 
     ctx.type = 'text/html';
     ctx.body = `
