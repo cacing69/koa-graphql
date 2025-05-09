@@ -15,95 +15,95 @@ datasource db {
 }
 
 model User {
-  id        String  @id @default(ulid()) @db.VarChar(26) @map("user_id")
-  firstName String  @db.VarChar(255) @map("user_first_name")
-  lastName  String? @db.VarChar(255) @map("user_last_name")
-  email     String  @unique @db.VarChar(255) @map("user_email")
-  password  String  @db.VarChar(255) @map("user_password")
+  id        String  @id @default(ulid()) @map("user_id") @db.VarChar(26)
+  firstName String  @map("user_first_name") @db.VarChar(255)
+  lastName  String? @map("user_last_name") @db.VarChar(255)
+  email     String  @unique @map("user_email") @db.VarChar(255)
+  password  String  @map("user_password") @db.VarChar(255)
 
   createdAt DateTime  @default(now()) @map("user_created_at")
   updatedAt DateTime? @map("user_updated_at")
   deletedAt DateTime? @map("user_deleted_at")
-  createdBy String?   @db.VarChar(26) @map("user_created_by")
-  updatedBy String?   @db.VarChar(26) @map("user_created_by")
-  deletedBy String?   @db.VarChar(26) @map("user_created_by")
+  createdBy String?   @map("user_created_by") @db.VarChar(26)
+  updatedBy String?   @map("user_updated_by") @db.VarChar(26)
+  deletedBy String?   @map("user_deleted_by") @db.VarChar(26)
 
   userPermissions UserPermission[]
 
-  @@map("t_users")
+  @@map("users")
 }
 
 model Role {
-  id          String  @id @default(ulid()) @db.VarChar(26) @map("role_id")
-  name        String  @db.VarChar(255) @map("role_name")
-  displayName String? @db.VarChar(255) @map("role_display_name")
-  description String? @db.VarChar(255) @map("role_description")
+  id          String  @id @default(ulid()) @map("role_id") @db.VarChar(26)
+  name        String  @map("role_name") @db.VarChar(255)
+  displayName String? @map("role_display_name") @db.VarChar(255)
+  description String? @map("role_description") @db.VarChar(255)
 
   createdAt DateTime  @default(now()) @map("role_created_at")
   updatedAt DateTime? @map("role_updated_at")
   deletedAt DateTime? @map("role_deleted_at")
-  createdBy String?   @db.VarChar(26) @map("role_created_by")
-  updatedBy String?   @db.VarChar(26) @map("role_created_by")
-  deletedBy String?   @db.VarChar(26) @map("role_created_by")
-
-  @@map("roles")
+  createdBy String?   @map("role_created_by") @db.VarChar(26)
+  updatedBy String?   @map("role_updated_by") @db.VarChar(26)
+  deletedBy String?   @map("role_deleted_by") @db.VarChar(26)
 
   rolePermissions RolePermission[]
+
+  @@map("roles")
 }
 
 model Permission {
-  id          String  @id @default(ulid()) @db.VarChar(26) @map("permission_id")
-  name        String  @db.VarChar(255) @map("permission_name")
-  displayName String? @db.VarChar(255) @map("permission_display_name")
-  description String? @db.VarChar(255) @map("permission_description")
+  id          String  @id @default(ulid()) @map("permission_id") @db.VarChar(26)
+  name        String  @map("permission_name") @db.VarChar(255)
+  displayName String? @map("permission_display_name") @db.VarChar(255)
+  description String? @map("permission_description") @db.VarChar(255)
 
   createdAt DateTime  @default(now()) @map("permission_created_at")
   updatedAt DateTime? @map("permission_updated_at")
   deletedAt DateTime? @map("permission_deleted_at")
-  createdBy String?   @db.VarChar(26) @map("permission_created_by")
-  updatedBy String?   @db.VarChar(26) @map("permission_created_by")
-  deletedBy String?   @db.VarChar(26) @map("permission_created_by")
-
-  @@map("permissions")
+  createdBy String?   @map("permission_created_by") @db.VarChar(26)
+  updatedBy String?   @map("permission_updated_by") @db.VarChar(26)
+  deletedBy String?   @map("permission_deleted_by") @db.VarChar(26)
 
   rolePermissions RolePermission[]
   userPermissions UserPermission[]
+
+  @@map("permissions")
 }
 
 model RolePermission {
-  id           String @id @default(ulid()) @db.VarChar(26) @map("role_permission_id")
-  roleId       String @db.VarChar(26) @map("role_permission_role_id")
-  permissionId String @db.VarChar(26) @map("role_permission_permission_id")
+  id           String @id @default(ulid()) @map("role_permission_id") @db.VarChar(26)
+  roleId       String @map("role_permission_role_id") @db.VarChar(26)
+  permissionId String @map("role_permission_permission_id") @db.VarChar(26)
 
   createdAt DateTime  @default(now()) @map("role_permission_created_at")
   updatedAt DateTime? @map("role_permission_updated_at")
   deletedAt DateTime? @map("role_permission_deleted_at")
-  createdBy String?   @db.VarChar(26) @map("role_permission_created_by")
-  updatedBy String?   @db.VarChar(26) @map("role_permission_created_by")
-  deletedBy String?   @db.VarChar(26) @map("role_permission_created_by")
-
-  @@map("role_permissions")
+  createdBy String?   @map("role_permission_created_by") @db.VarChar(26)
+  updatedBy String?   @map("role_permission_updated_by") @db.VarChar(26)
+  deletedBy String?   @map("role_permission_deleted_by") @db.VarChar(26)
 
   role       Role       @relation(fields: [roleId], references: [id])
   permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@map("role_permissions")
 }
 
 model UserPermission {
-  id           String @id @default(ulid()) @db.VarChar(26) @map("user_permission_id")
-  userId       String @db.VarChar(26) @map("user_permission_user_id")
-  permissionId String @db.VarChar(26) @map("user_permission_permission_id")
+  id           String @id @default(ulid()) @map("user_permission_id") @db.VarChar(26)
+  userId       String @map("user_permission_user_id") @db.VarChar(26)
+  permissionId String @map("user_permission_permission_id") @db.VarChar(26)
 
   createdAt DateTime  @default(now()) @map("user_permission_created_at")
   updatedAt DateTime? @map("user_permission_updated_at")
   deletedAt DateTime? @map("user_permission_deleted_at")
-  createdBy String?   @db.VarChar(26) @map("user_permission_created_by")
-  updatedBy String?   @db.VarChar(26) @map("user_permission_created_by")
-  deletedBy String?   @db.VarChar(26) @map("user_permission_created_by")
-
-  @@map("user_permissions")
+  createdBy String?   @map("user_permission_created_by") @db.VarChar(26)
+  updatedBy String?   @map("user_permission_updated_by") @db.VarChar(26)
+  deletedBy String?   @map("user_permission_deleted_by") @db.VarChar(26)
 
   user       User       @relation(fields: [userId], references: [id])
   permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@map("user_permissions")
 }
 
 model Post {
@@ -114,9 +114,9 @@ model Post {
   createdAt DateTime  @default(now()) @map("post_created_at")
   updatedAt DateTime? @map("post_updated_at")
   deletedAt DateTime? @map("post_deleted_at")
-  createdBy String?   @db.VarChar(26) @map("post_created_by")
-  updatedBy String?   @db.VarChar(26) @map("post_created_by")
-  deletedBy String?   @db.VarChar(26) @map("post_created_by")
+  createdBy String?   @map("post_created_by") @db.VarChar(26)
+  updatedBy String?   @map("post_updated_by") @db.VarChar(26)
+  deletedBy String?   @map("post_deleted_by") @db.VarChar(26)
 
   @@map("posts")
 }
