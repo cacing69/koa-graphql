@@ -1,8 +1,8 @@
 import { injectable, inject } from 'tsyringe';
-import { IPostRepository } from '../../domain/repositories/post.repository';
-import { Post } from '../../domain/entities/post.entity';
-import { NotFound } from '../../../../shared/utils/error';
-import { GraphQLContext } from '../../../../shared/types/context';
+import { IPostRepository } from '@/features/post/domain/repositories/post.repository';
+import { Post } from '@/features/post/domain/entities/post.entity';
+import { NotFound } from '@/shared/utils/error';
+import { GraphQLContext } from '@/shared/types/context';
 
 @injectable()
 export class FindPostByIdUseCase {

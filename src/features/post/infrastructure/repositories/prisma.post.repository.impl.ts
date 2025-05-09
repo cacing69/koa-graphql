@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import { Post } from '@features/post/domain/entities/post.entity';
-import { IPostRepository } from '@features/post/domain/repositories/post.repository';
-import { PaginatedResponse } from '@shared/types/paginated.response';
-import { PrismaClient } from '../../../../shared/prisma/client';
-import { InternalServerError, NotFound } from '../../../../shared/utils/error';
+import { Post } from '@/features/post/domain/entities/post.entity';
+import { IPostRepository } from '@/features/post/domain/repositories/post.repository';
+import { PaginatedResponse } from '@/shared/types/paginated.response';
+import { PrismaClient } from '@/shared/prisma/client';
+import { InternalServerError, NotFound } from '@/shared/utils/error';
 
 @injectable()
 export class PrismaPostRepositoryImpl implements IPostRepository {

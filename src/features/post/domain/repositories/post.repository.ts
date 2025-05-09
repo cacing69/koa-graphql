@@ -1,5 +1,5 @@
-import { PaginatedResponse } from '@shared/types/paginated.response';
-import { Post } from '../entities/post.entity';
+import { PaginatedResponse } from '@/shared/types/paginated.response';
+import { Post } from '@/features/post/domain/entities/post.entity';
 
 
 export interface IPostRepository {

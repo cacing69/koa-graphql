@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon",
-    "build": "tsc && tsc-alias"
+    "build": "DEBUG=tsc-alias tsc-alias"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,6 @@
     "koa-helmet": "^8.0.1",
     "koa-router": "^13.0.1",
     "koa-static": "^5.0.0",
-    "koa2-cors": "^2.0.6",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.10.0",
     "zod": "^3.24.4"
@@ -33,7 +32,6 @@
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-router": "^7.4.8",
     "@types/koa-static": "^4.0.4",
-    "@types/koa2-cors": "^2.0.5",
     "@types/koa__cors": "^5.0.0",
     "@types/node": "^22.15.14",
     "nodemon": "^3.1.10",

@@ -1,4 +1,4 @@
-import { PrismaClient } from '@shared/prisma/client';
+import { PrismaClient } from '@/shared/prisma/client';
 
 const isProduction = false;
 

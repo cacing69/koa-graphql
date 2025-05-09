@@ -39,7 +39,7 @@ app.use(graphqlRouter.routes()).use(graphqlRouter.allowedMethods());
 
 app.use(serve(path.join(__dirname, '../public'))); // Sesuaikan dengan lokasi `graphiql.html`
 
-const PORT = 4000;
+const PORT = 4001;
 
 app.listen(PORT, () => {
     console.log(`Server ready at http://localhost:${PORT}/graphql`);

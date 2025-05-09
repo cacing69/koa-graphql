@@ -1,12 +1,12 @@
 import { container } from 'tsyringe';
-import { GraphQLContext } from '@shared/types/context';
-import { CreatePostUseCase } from '@features/post/application/usecases/create-post.usecase';
-import { FindPostByIdUseCase } from '@features/post/application/usecases/find-post-by-id.usecase';
-import { PaginatePostUseCase } from '@features/post/application/usecases/paginate-post.usecase';
-import { createPostPayload } from '@features/post/application/payloads/create-post.payload';
-import { validateInput } from '@shared/utils/validate-input';
-import { updatePostPayload } from '../../../application/payloads/update-post.payload';
-import { UpdatePostByIdUseCase } from '../../../application/usecases/update-post-by-id.usecase';
+import { GraphQLContext } from '@/shared/types/context';
+import { CreatePostUseCase } from '@/features/post/application/usecases/create-post.usecase';
+import { FindPostByIdUseCase } from '@/features/post/application/usecases/find-post-by-id.usecase';
+import { PaginatePostUseCase } from '@/features/post/application/usecases/paginate-post.usecase';
+import { createPostPayload } from '@/features/post/application/payloads/create-post.payload';
+import { validateInput } from '@/shared/utils/validate-input';
+import { updatePostPayload } from '@/features/post/application/payloads/update-post.payload';
+import { UpdatePostByIdUseCase } from '@/features/post/application/usecases/update-post-by-id.usecase';
 
 
 export const postResolvers = {
